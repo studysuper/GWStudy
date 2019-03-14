@@ -1,5 +1,5 @@
 
-var prefix = "/common/dict"
+var prefix = _ctx+"/common/dict"
 $(function() {
 	
 	//	var config = {

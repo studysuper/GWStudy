@@ -1,5 +1,5 @@
 
-var prefix = "/oa/notify"
+var prefix = _ctx+"/oa/notify"
 $(function() {
 	load();
 });

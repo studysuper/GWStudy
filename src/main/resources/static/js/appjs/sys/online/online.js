@@ -1,4 +1,4 @@
-var prefix = "/sys/online"
+var prefix =_ctx+ "/sys/online"
 $(function() {
 	load();
 });

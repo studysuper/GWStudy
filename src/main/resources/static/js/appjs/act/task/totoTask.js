@@ -1,4 +1,4 @@
-var prefix = "/activiti/task"
+var prefix =_ctx+ "/activiti/task"
 $(function() {
 	load();
 });

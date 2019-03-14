@@ -1,4 +1,4 @@
-var prefix = "/blog/bContent"
+var prefix = _ctx+"/blog/bContent"
 $(function() {
 	load();
 });

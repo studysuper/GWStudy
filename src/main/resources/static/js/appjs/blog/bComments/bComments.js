@@ -1,5 +1,5 @@
 
-var prefix = "/blog/bComments"
+var prefix = _ctx+"/blog/bComments"
 $(function() {
 	load();
 });

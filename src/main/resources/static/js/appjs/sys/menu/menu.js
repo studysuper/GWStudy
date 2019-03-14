@@ -1,4 +1,4 @@
-var prefix = "/sys/menu"
+var prefix = _ctx + "/sys/menu"
 $(document).ready(function () {
     load();
 });
@@ -11,7 +11,7 @@ var load = function () {
                 parentCode: 'parentId',
                 type: "GET", // 请求数据的ajax类型
                 url: prefix + '/list', // 请求数据的ajax的url
-                ajaxParams: {sort:'order_num'}, // 请求数据的ajax的data属性
+                ajaxParams: {sort: 'order_num'}, // 请求数据的ajax的data属性
                 expandColumn: '1',// 在哪一列上面显示展开按钮
                 striped: true, // 是否各行渐变色
                 bordered: true, // 是否显示边框
@@ -38,7 +38,7 @@ var load = function () {
                         field: 'icon',
                         align: 'center',
                         valign: 'center',
-                        width : '5%',
+                        width: '5%',
                         formatter: function (item, index) {
                             return item.icon == null ? ''
                                 : '<i class="' + item.icon
@@ -50,7 +50,7 @@ var load = function () {
                         field: 'type',
                         align: 'center',
                         valign: 'center',
-                        width : '10%',
+                        width: '10%',
                         formatter: function (item, index) {
                             if (item.type === 0) {
                                 return '<span class="label label-primary">目录</span>';
@@ -66,13 +66,13 @@ var load = function () {
                     {
                         title: '地址',
                         valign: 'center',
-                        width : '20%',
+                        width: '20%',
                         field: 'url'
                     },
                     {
                         title: '权限标识',
                         valign: 'center',
-                        width : '20%',
+                        width: '20%',
                         field: 'perms'
                     },
                     {

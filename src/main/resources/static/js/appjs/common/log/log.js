@@ -1,4 +1,4 @@
-var prefix = "/common/log"
+var prefix = _ctx+"/common/log"
 $(function () {
     load();
 
