@@ -1,9 +1,11 @@
 server:
   session-timeout: 1800
-#    tomcat:
-#        max-threads: 1000
-#        min-spare-threads: 30
+  #    tomcat:
+  #        max-threads: 1000
+  #        min-spare-threads: 30
   port: 80
+  servlet:
+    context-path: /gwstudy
 #    uri-encoding: utf-8
 #security:
 #  basic:
