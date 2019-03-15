@@ -194,7 +194,7 @@
                 },
             });
         }
-        if (options.url) {s
+        if (options.url) {
             target.load();
         } else {
             // 也可以通过defaults里面的data属性通过传递一个数据集合进来对组件进行初始化....有兴趣可以自己实现，思路和上述类似

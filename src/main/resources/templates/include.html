@@ -23,7 +23,9 @@
     <link th:href="@{/css/plugins/chosen/chosen.css}" rel="stylesheet">
     <link href="/css/style.css?v=4.1.0" th:href="@{/css/style.css?v=4.1.0}"
           rel="stylesheet">
-    <script th:inline="javascript"> var _ctx = [[@{/}]] ; </script>
+   <!-- <script th:inline="javascript"> var _ctx = [[@{/}]] ;  </script>-->
+    <script th:inline="javascript"> var _ctx = [[@{/}]]; _ctx = (_ctx == "/") ? "" : (_ctx.substr(0,_ctx.length-1));</script>
+
 </head>
 <div th:fragment="footer">
     <script th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
