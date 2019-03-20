@@ -7,27 +7,62 @@
           class="username"
           type="text"
           placeholder="用户名："
+          ref="user"
         >
         <input
           class="pwd"
           type="password"
           placeholder="密码："
+          ref="pwd"
         >
-        <div class="login_btn">登录</div>
+        <div class="login_btn" @click="register">注册</div>
       </div>
     </div>
     <footerBar class="footerBar"></footerBar>
   </div>
 </template>
 <script>
-// import loginBg from "../assets/images/login_bg.png"
 import headBar from "@/components/nav/header";
 import footerBar from "@/components/nav/footer";
 export default {
+  data(){
+    return{
+      username:'',
+      password:''
+      
+    }
+  },
   components: {
     headBar,
     footerBar
+  },
+  created:{
+    
+  },
+  methods:{
+    register:function(){
+      let username = this.$refs.user.value;
+      let password = this.$refs.pwd.value;
+      if((username != "") && (password != "")){
+        alert('参数正确');
+        this.axios.post('url',{
+          username:username,
+          password:password
+        })
+        .then((res=>{
+          console.log(res);
+        }))
+        .catch((error=>{
+          console.log(error);
+        }))
+      }else if (username === ""){
+        alert('用户名不能为空');
+      }else {
+        alert('密码不能为空');
+      }
+    }
   }
+  
 };
 </script>
 
@@ -72,6 +107,7 @@ export default {
   text-align: center;
   line-height: 30px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .footerBar {
     margin-top: 520px;

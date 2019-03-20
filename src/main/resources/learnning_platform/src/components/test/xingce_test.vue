@@ -46,11 +46,11 @@
           >
         </div>
         <div class="timer_box">
-          <p>已用时 00:00:00</p>
+          <p>{{str}}</p>
         </div>
         <div class="btns_box">
-          <div class="btn btn_stop">暂停</div>
-          <div class="btn btn_after">下次做</div>
+          <div class="btn btn_stop" @click="stop">暂停</div>
+          <div class="btn btn_after" @click="start">下次做</div>
           <div class="btn btn_sub">交卷</div>
         </div>
       </div>
@@ -62,6 +62,13 @@ export default {
   data() {
     return {
       radio2: 3,
+      h:0, 
+      m:0,
+      s:0,
+      ms:0,
+      time:0,
+      str:'',
+      mytime:'',
       testList: [
         {
           num: 1,
@@ -101,6 +108,48 @@ export default {
         }
       ]
     };
+  },
+  mounted(){
+      this.start();
+  },
+  methods:{
+      timer(){
+          this.ms = this.ms +50;
+          if(this.ms>=1000){
+              this.ms = 0;
+              this.s = this.s + 1;
+          }
+          if(this.s>=60){
+              this.s = 0;
+              this.m = this.m + 1;
+          }
+          if(this.m>=60){
+              this.m = 0;
+              this.h = this.h + 1;
+          }
+          this.str = this.toDub(this.h) + ":" + this.toDub(this.m) + ":" + this.toDub(this.s);
+      },
+      reset(){
+          clearInterval(this.time);
+          this.h = 0;
+          this.m = 0;
+          this.s = 0;
+          this.ms = 0;
+          this.str = "00:00:00";
+      },
+      start(){
+          this.time = setInterval(this.timer,50);
+      },
+      stop(){
+          clearInterval(this.time);
+      },
+      toDub(n){
+          if(n<10){
+              return "0"+n;
+          }else{
+              return n;
+          }
+      }
   }
 };
 </script>
@@ -184,11 +233,11 @@ export default {
 }
 .btn_stop,
 .btn_after {
-  border: 1px solid #0468a6;
-  color: #0468a6;
+  border: 1px solid #409eff;
+  color: #409eff;
 }
 .btn_sub {
-  background: #0468a6;
+  background: #409eff;
   color: #ffffff;
   margin-bottom: 20px;
 }

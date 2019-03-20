@@ -9,6 +9,7 @@ import login from '@/components/nav/login'
 import xingceSprint from '@/components/test/xingce_menu_sprint'
 import xingceSpecial from '@/components/test/xingce_menu_special'
 import xingceTest from '@/components/test/xingce_test'
+import shenlunTest from '@/components/test/shenlun_test'
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ export default new Router({
       path: '/xingceTest',
       name: 'xingceTest',
       component: xingceTest
+    },
+    {
+      path: '/shenlunTest',
+      name: 'shenlunTest',
+      component: shenlunTest
     }
   ]
 })
