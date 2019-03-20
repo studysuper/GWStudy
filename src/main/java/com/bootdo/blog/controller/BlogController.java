@@ -25,7 +25,9 @@ public class BlogController {
 
 	@GetMapping()
 	String blog() {
-		return "blog/index/main";
+		return "/login";//先转到登录首页
+		//博客地址先不对外提供
+//		return "blog/index/main";
 	}
 
 	@ResponseBody
