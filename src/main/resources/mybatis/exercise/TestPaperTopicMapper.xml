@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.exercise.dao.TestPaperTopicDao">
+
+	<select id="get" resultType="com.bootdo.exercise.domain.TestPaperTopicDO">
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic`,`test_paper_type_id` from exercise_test_paper_topic where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperTopicDO">
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic`,`test_paper_type_id` from exercise_test_paper_topic
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperTopic != null and testPaperTopic != ''"> and test_paper_topic = #{testPaperTopic} </if>
+		  		  <if test="testPaperTypeId != null and testPaperTypeId != ''"> and test_paper_type_id = #{testPaperTypeId} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from exercise_test_paper_topic
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperTopic != null and testPaperTopic != ''"> and test_paper_topic = #{testPaperTopic} </if>
+		  		  <if test="testPaperTypeId != null and testPaperTypeId != ''"> and test_paper_type_id = #{testPaperTypeId} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
+		insert into exercise_test_paper_topic
+		(
+			`id`, 
+			`operator`, 
+			`createdate`, 
+			`modifydate`, 
+			`test_paper_topic`, 
+			`test_paper_type_id`
+		)
+		values
+		(
+			#{id}, 
+			#{operator}, 
+			#{createdate}, 
+			#{modifydate}, 
+			#{testPaperTopic}, 
+			#{testPaperTypeId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
+		update exercise_test_paper_topic 
+		<set>
+			<if test="operator != null">`operator` = #{operator}, </if>
+			<if test="createdate != null">`createdate` = #{createdate}, </if>
+			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
+			<if test="testPaperTopic != null">`test_paper_topic` = #{testPaperTopic}, </if>
+			<if test="testPaperTypeId != null">`test_paper_type_id` = #{testPaperTypeId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from exercise_test_paper_topic where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from exercise_test_paper_topic where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

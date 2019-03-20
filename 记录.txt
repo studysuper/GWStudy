@@ -28,6 +28,13 @@
                         学号，姓名(必填)，密码(必填)，年龄，手机号，邮箱，身份证号，头像，家庭住址
     题库类型：（这个可以做成数据字典）
 
+      exercise_test_paper_type   试卷表  : 试卷题目，试题类型
+      exercise_test_paper_topic  试题题目表： 试题题目，test_paper_type_id
+      exercise_test_paper_option 试题选项表   试题选项 ，test_paper_topic_id
+      exercise_test_paper_answer  试题答案表  试题答案, test_paper_topic_id
 
-    习题明细：          exercise_item
+    习题明细：   需要创建一个表 ： 应该有的字段为: 试卷题目,试题类型
+                    题目表                         试题题目
+                    选项表                         选项
+                    答案表                         答案
 

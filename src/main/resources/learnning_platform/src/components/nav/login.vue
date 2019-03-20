@@ -41,12 +41,14 @@ export default {
   },
   methods:{
     register:function(){
+      debugger;
       let username = this.$refs.user.value;
       let password = this.$refs.pwd.value;
+      let url = "http://localhost:80/front/froUser/save";
       if((username != "") && (password != "")){
         alert('参数正确');
-        this.axios.post('url',{
-          username:username,
+        this.axios.post(url,{
+          userName:username,
           password:password
         })
         .then((res=>{
