@@ -101,6 +101,9 @@ public class GenUtils {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
 
+        //新修改的
+        String[] tableName = tableDO.getTableName().split("_");
+        String packageName = (tableName.length <= 0) ? tableDO.getTableName() : tableName[0];
         //封装模板数据
         Map<String, Object> map = new HashMap<>(16);
         map.put("tableName", tableDO.getTableName());
@@ -108,9 +111,11 @@ public class GenUtils {
         map.put("pk", tableDO.getPk());
         map.put("className", tableDO.getClassName());
         map.put("classname", tableDO.getClassname());
-        map.put("pathName", config.getString("package").substring(config.getString("package").lastIndexOf(".") + 1));
+//        map.put("pathName", config.getString("package").substring(config.getString("package").lastIndexOf(".") + 1));
+        map.put("pathName", packageName);
+
         map.put("columns", tableDO.getColumns());
-        map.put("package", config.getString("package"));
+        map.put("package", config.getString("package") + "." + packageName);
         map.put("author", config.getString("author"));
         map.put("email", config.getString("email"));
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
@@ -127,8 +132,7 @@ public class GenUtils {
             try {
                 //生成代码的模块名字，改成取表名称的第一个单词
 //                String packageName = config.getString("package").substring(config.getString("package").lastIndexOf(".") + 1);
-                String[] tableName = tableDO.getTableName().split("_");
-                String packageName = (tableName.length <= 0) ? tableDO.getTableName() : tableName[0];
+
                 //添加到zip
                 String zipName = getFileName(template, tableDO.getClassname(),
                         tableDO.getClassName(),
