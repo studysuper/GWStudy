@@ -1,5 +1,4 @@
 $(function () {
-
     // var lineoption = {
     //     title : {
     //         text: '未来一周气温变化'

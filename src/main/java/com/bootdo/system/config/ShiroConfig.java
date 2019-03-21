@@ -45,7 +45,7 @@ public class ShiroConfig {
     private int timeout;
 
     @Value("${spring.cache.type}")
-    private String cacheType ;
+    private String cacheType;
 
     @Value("${server.session-timeout}")
     private int tomcatTimeout;
@@ -73,8 +73,8 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/login","anon");
-        filterChainDefinitionMap.put("/getVerify","anon");
+        filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/getVerify", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");
@@ -87,7 +87,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/blog", "anon");
         filterChainDefinitionMap.put("/blog/open/**", "anon");
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/api/**", "anon");//让api先的可以让任何人进行访问
+        filterChainDefinitionMap.put("/**", "authc");//控制页面一直跳转到首页
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
@@ -108,6 +109,11 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    /**
+     * 启动时注册这个
+     *
+     * @return
+     */
     @Bean
     UserRealm userRealm() {
         UserRealm userRealm = new UserRealm();
@@ -199,7 +205,7 @@ public class ShiroConfig {
     }
 
     @Bean("cacheManager2")
-    CacheManager cacheManager(){
+    CacheManager cacheManager() {
         return CacheManager.create();
     }
 
