@@ -1,13 +1,11 @@
-package com.bootdo.api;
+package com.bootdo.actionservice;
 
 import com.bootdo.common.utils.R;
 import com.bootdo.front.domain.FroUserDO;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/frouser")
-public interface FroUserApi {
+public interface FroUserActionService {
 
     /**
      * 前端注册功能
