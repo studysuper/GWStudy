@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.sys.dao.MaxNoExpDao">
+
+    <select id="getByKCode" resultType="com.bootdo.sys.domain.MaxNoDO">
+		select `id`,`operator`,`createdate`,`modifydate`,`code_key`,`code_value` from sys_max_no where code_key = #{0}
+	</select>
+
+
+</mapper>

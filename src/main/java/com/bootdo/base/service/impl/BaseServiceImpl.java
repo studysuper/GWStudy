@@ -3,7 +3,7 @@ package com.bootdo.base.service.impl;
 import com.bootdo.base.dao.BaseDao;
 import com.bootdo.base.domain.BaseDO;
 import com.bootdo.base.service.BaseService;
-import com.bootdo.util.UUIDGenerator;
+import com.bootdo.common.utils.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 

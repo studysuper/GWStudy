@@ -1,4 +1,4 @@
-package com.bootdo.util;
+package com.bootdo.common.utils;
 
 import java.util.UUID;
 

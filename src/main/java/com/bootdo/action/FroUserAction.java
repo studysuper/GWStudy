@@ -18,7 +18,7 @@ public class FroUserAction implements FroUserActionService {
 
     @Override
     public R register(@RequestBody FroUserDO froUser) {
-        if (froUserService.save(froUser) > 0) {
+        if (froUserService.saveExp(froUser) > 0) {
             return R.ok();
         }
         return R.error();
