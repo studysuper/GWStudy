@@ -3,122 +3,124 @@
 
 <mapper namespace="com.bootdo.front.dao.FroUserDao">
 
-	<select id="get" resultType="com.bootdo.front.domain.FroUserDO">
+    <select id="get" resultType="com.bootdo.front.domain.FroUserDO">
 		select `id`,`operator`,`createdate`,`modifydate`,`user_no`,`user_name`,`password`,`age`,`phone`,`email`,`idno`,`head_portrait`,`address` from front_fro_user where id = #{value}
 	</select>
 
-	<select id="list" resultType="com.bootdo.front.domain.FroUserDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`user_no`,`user_name`,`password`,`age`,`phone`,`email`,`idno`,`head_portrait`,`address` from front_fro_user
-        <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
-		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
-		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
-		  		  <if test="userNo != null and userNo != ''"> and user_no = #{userNo} </if>
-		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
-		  		  <if test="password != null and password != ''"> and password = #{password} </if>
-		  		  <if test="age != null and age != ''"> and age = #{age} </if>
-		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
-		  		  <if test="email != null and email != ''"> and email = #{email} </if>
-		  		  <if test="idno != null and idno != ''"> and idno = #{idno} </if>
-		  		  <if test="headPortrait != null and headPortrait != ''"> and head_portrait = #{headPortrait} </if>
-		  		  <if test="address != null and address != ''"> and address = #{address} </if>
-		  		</where>
+    <select id="list" resultType="com.bootdo.front.domain.FroUserDO">
+        select
+        `id`,`operator`,`createdate`,`modifydate`,`user_no`,`user_name`,`password`,`age`,`phone`,`email`,`idno`,`head_portrait`,`address`
+        from front_fro_user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="operator != null and operator != ''">and operator = #{operator}</if>
+            <if test="createdate != null and createdate != ''">and createdate = #{createdate}</if>
+            <if test="modifydate != null and modifydate != ''">and modifydate = #{modifydate}</if>
+            <if test="userNo != null and userNo != ''">and user_no = #{userNo}</if>
+            <if test="userName != null and userName != ''">and user_name = #{userName}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="age != null and age != ''">and age = #{age}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+            <if test="idno != null and idno != ''">and idno = #{idno}</if>
+            <if test="headPortrait != null and headPortrait != ''">and head_portrait = #{headPortrait}</if>
+            <if test="address != null and address != ''">and address = #{address}</if>
+        </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
-			<otherwise>
+            <otherwise>
                 order by id desc
-			</otherwise>
+            </otherwise>
         </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="count" resultType="int">
-		select count(*) from front_fro_user
-		 <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
-		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
-		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
-		  		  <if test="userNo != null and userNo != ''"> and user_no = #{userNo} </if>
-		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
-		  		  <if test="password != null and password != ''"> and password = #{password} </if>
-		  		  <if test="age != null and age != ''"> and age = #{age} </if>
-		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
-		  		  <if test="email != null and email != ''"> and email = #{email} </if>
-		  		  <if test="idno != null and idno != ''"> and idno = #{idno} </if>
-		  		  <if test="headPortrait != null and headPortrait != ''"> and head_portrait = #{headPortrait} </if>
-		  		  <if test="address != null and address != ''"> and address = #{address} </if>
-		  		</where>
-	</select>
-	 
-	<insert id="save" parameterType="com.bootdo.front.domain.FroUserDO">
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from front_fro_user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="operator != null and operator != ''">and operator = #{operator}</if>
+            <if test="createdate != null and createdate != ''">and createdate = #{createdate}</if>
+            <if test="modifydate != null and modifydate != ''">and modifydate = #{modifydate}</if>
+            <if test="userNo != null and userNo != ''">and user_no = #{userNo}</if>
+            <if test="userName != null and userName != ''">and user_name = #{userName}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="age != null and age != ''">and age = #{age}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="email != null and email != ''">and email = #{email}</if>
+            <if test="idno != null and idno != ''">and idno = #{idno}</if>
+            <if test="headPortrait != null and headPortrait != ''">and head_portrait = #{headPortrait}</if>
+            <if test="address != null and address != ''">and address = #{address}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.front.domain.FroUserDO">
 		insert into front_fro_user
 		(
-			`id`, 
-			`operator`, 
-			`createdate`, 
-			`modifydate`, 
-			`user_no`, 
-			`user_name`, 
-			`password`, 
-			`age`, 
-			`phone`, 
-			`email`, 
-			`idno`, 
-			`head_portrait`, 
-			`address`
-		)
+        			`id`,
+                    			`operator`,
+                    			`createdate`,
+                    			`modifydate`,
+                    			`user_no`,
+                    			`user_name`,
+                    			`password`,
+                    			`age`,
+                    			`phone`,
+                    			`email`,
+                    			`idno`,
+                    			`head_portrait`,
+                    			`address`
+            		)
 		values
 		(
-			#{id}, 
-			#{operator}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{userNo}, 
-			#{userName}, 
-			#{password}, 
-			#{age}, 
-			#{phone}, 
-			#{email}, 
-			#{idno}, 
-			#{headPortrait}, 
-			#{address}
-		)
+                    			#{id},
+                                            			#{operator},
+                                            			now(),
+                                            			now(),
+                                            			#{userNo},
+                                            			#{userName},
+                                            			#{password},
+                                            			#{age},
+                                            			#{phone},
+                                            			#{email},
+                                            			#{idno},
+                                            			#{headPortrait},
+                                            			#{address}
+                        		)
 	</insert>
-	 
-	<update id="update" parameterType="com.bootdo.front.domain.FroUserDO">
-		update front_fro_user 
-		<set>
-			<if test="operator != null">`operator` = #{operator}, </if>
-			<if test="createdate != null">`createdate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
-			<if test="userNo != null">`user_no` = #{userNo}, </if>
-			<if test="userName != null">`user_name` = #{userName}, </if>
-			<if test="password != null">`password` = #{password}, </if>
-			<if test="age != null">`age` = #{age}, </if>
-			<if test="phone != null">`phone` = #{phone}, </if>
-			<if test="email != null">`email` = #{email}, </if>
-			<if test="idno != null">`idno` = #{idno}, </if>
-			<if test="headPortrait != null">`head_portrait` = #{headPortrait}, </if>
-			<if test="address != null">`address` = #{address}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="remove">
+
+    <update id="update" parameterType="com.bootdo.front.domain.FroUserDO">
+        update front_fro_user
+        <set>
+            <if test="operator != null">`operator` = #{operator},</if>
+            <if test="createdate != null">`createdate` = #{createdate},</if>
+            `modifydate` = now(),
+            <if test="userNo != null">`user_no` = #{userNo},</if>
+            <if test="userName != null">`user_name` = #{userName},</if>
+            <if test="password != null">`password` = #{password},</if>
+            <if test="age != null">`age` = #{age},</if>
+            <if test="phone != null">`phone` = #{phone},</if>
+            <if test="email != null">`email` = #{email},</if>
+            <if test="idno != null">`idno` = #{idno},</if>
+            <if test="headPortrait != null">`head_portrait` = #{headPortrait},</if>
+            <if test="address != null">`address` = #{address}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
 		delete from front_fro_user where id = #{value}
 	</delete>
-	
-	<delete id="batchRemove">
-		delete from front_fro_user where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+
+    <delete id="batchRemove">
+        delete from front_fro_user where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

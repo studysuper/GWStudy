@@ -4,7 +4,7 @@ import ${package}.domain.${className}DO;
 
 import java.util.List;
 import java.util.Map;
-
+import com.bootdo.base.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,19 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date ${datetime}
  */
 @Mapper
-public interface ${className}Dao {
+public interface ${className}Dao extends BaseDao<${className}DO, String>{
 
-	${className}DO get(${pk.attrType} ${pk.attrname});
-	
-	List<${className}DO> list(Map<String,Object> map);
-	
-	int count(Map<String,Object> map);
-	
-	int save(${className}DO ${classname});
-	
-	int update(${className}DO ${classname});
-	
-	int remove(${pk.attrType} ${pk.columnName});
-	
-	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
 }

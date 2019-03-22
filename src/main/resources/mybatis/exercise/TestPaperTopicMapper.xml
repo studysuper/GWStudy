@@ -9,7 +9,7 @@
 
 	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperTopicDO">
 		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic`,`test_paper_type_id` from exercise_test_paper_topic
-        <where>  
+        <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
@@ -29,10 +29,10 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
+
  	<select id="count" resultType="int">
 		select count(*) from exercise_test_paper_topic
-		 <where>  
+		 <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
@@ -41,46 +41,45 @@
 		  		  <if test="testPaperTypeId != null and testPaperTypeId != ''"> and test_paper_type_id = #{testPaperTypeId} </if>
 		  		</where>
 	</select>
-	 
-	<insert id="save" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
+
+    <insert id="save" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
 		insert into exercise_test_paper_topic
 		(
-			`id`, 
-			`operator`, 
-			`createdate`, 
-			`modifydate`, 
-			`test_paper_topic`, 
-			`test_paper_type_id`
-		)
+        			`id`, 
+                    			`operator`, 
+                    			`createdate`, 
+                    			`modifydate`, 
+                    			`test_paper_topic`, 
+                    			`test_paper_type_id`
+            		)
 		values
 		(
-			#{id}, 
-			#{operator}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{testPaperTopic}, 
-			#{testPaperTypeId}
-		)
+                    			#{id}, 
+                                            			#{operator}, 
+                                            			now(), 
+                                            			now(), 
+                                            			#{testPaperTopic}, 
+                                            			#{testPaperTypeId}
+                        		)
 	</insert>
-	 
-	<update id="update" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
-		update exercise_test_paper_topic 
-		<set>
-			<if test="operator != null">`operator` = #{operator}, </if>
-			<if test="createdate != null">`createdate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
-			<if test="testPaperTopic != null">`test_paper_topic` = #{testPaperTopic}, </if>
-			<if test="testPaperTypeId != null">`test_paper_type_id` = #{testPaperTypeId}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
+
+    <update id="update" parameterType="com.bootdo.exercise.domain.TestPaperTopicDO">
+        update exercise_test_paper_topic
+        <set>
+                                                                                                    <if test="operator != null">`operator` = #{operator}, </if>
+                                                                                                            <if test="createdate != null">`createdate` = #{createdate}, </if>
+                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperTopic != null">`test_paper_topic` = #{testPaperTopic}, </if>
+                                                                                                            <if test="testPaperTypeId != null">`test_paper_type_id` = #{testPaperTypeId}</if>
+                                                        </set>
+        where id = #{id}
+    </update>
+
 	<delete id="remove">
 		delete from exercise_test_paper_topic where id = #{value}
 	</delete>
-	
+
 	<delete id="batchRemove">
-		delete from exercise_test_paper_topic where id in 
+		delete from exercise_test_paper_topic where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

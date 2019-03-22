@@ -9,7 +9,7 @@
 
 	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperOptionDO">
 		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_option`,`test_paper_topic_id` from exercise_test_paper_option
-        <where>  
+        <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
@@ -29,10 +29,10 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
+
  	<select id="count" resultType="int">
 		select count(*) from exercise_test_paper_option
-		 <where>  
+		 <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
@@ -41,46 +41,45 @@
 		  		  <if test="testPaperTopicId != null and testPaperTopicId != ''"> and test_paper_topic_id = #{testPaperTopicId} </if>
 		  		</where>
 	</select>
-	 
-	<insert id="save" parameterType="com.bootdo.exercise.domain.TestPaperOptionDO">
+
+    <insert id="save" parameterType="com.bootdo.exercise.domain.TestPaperOptionDO">
 		insert into exercise_test_paper_option
 		(
-			`id`, 
-			`operator`, 
-			`createdate`, 
-			`modifydate`, 
-			`test_paper_option`, 
-			`test_paper_topic_id`
-		)
+        			`id`, 
+                    			`operator`, 
+                    			`createdate`, 
+                    			`modifydate`, 
+                    			`test_paper_option`, 
+                    			`test_paper_topic_id`
+            		)
 		values
 		(
-			#{id}, 
-			#{operator}, 
-			#{createdate}, 
-			#{modifydate}, 
-			#{testPaperOption}, 
-			#{testPaperTopicId}
-		)
+                    			#{id}, 
+                                            			#{operator}, 
+                                            			now(), 
+                                            			now(), 
+                                            			#{testPaperOption}, 
+                                            			#{testPaperTopicId}
+                        		)
 	</insert>
-	 
-	<update id="update" parameterType="com.bootdo.exercise.domain.TestPaperOptionDO">
-		update exercise_test_paper_option 
-		<set>
-			<if test="operator != null">`operator` = #{operator}, </if>
-			<if test="createdate != null">`createdate` = #{createdate}, </if>
-			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
-			<if test="testPaperOption != null">`test_paper_option` = #{testPaperOption}, </if>
-			<if test="testPaperTopicId != null">`test_paper_topic_id` = #{testPaperTopicId}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
+
+    <update id="update" parameterType="com.bootdo.exercise.domain.TestPaperOptionDO">
+        update exercise_test_paper_option
+        <set>
+                                                                                                    <if test="operator != null">`operator` = #{operator}, </if>
+                                                                                                            <if test="createdate != null">`createdate` = #{createdate}, </if>
+                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperOption != null">`test_paper_option` = #{testPaperOption}, </if>
+                                                                                                            <if test="testPaperTopicId != null">`test_paper_topic_id` = #{testPaperTopicId}</if>
+                                                        </set>
+        where id = #{id}
+    </update>
+
 	<delete id="remove">
 		delete from exercise_test_paper_option where id = #{value}
 	</delete>
-	
+
 	<delete id="batchRemove">
-		delete from exercise_test_paper_option where id in 
+		delete from exercise_test_paper_option where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>
