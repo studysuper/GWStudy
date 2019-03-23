@@ -3,6 +3,7 @@ package com.bootdo.base.service.impl;
 import com.bootdo.base.dao.BaseDao;
 import com.bootdo.base.domain.BaseDO;
 import com.bootdo.base.service.BaseService;
+import com.bootdo.common.utils.ShiroUtils;
 import com.bootdo.common.utils.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -58,6 +59,7 @@ public class BaseServiceImpl<T extends BaseDO<PK>, PK> implements BaseService<T,
             t.setCreatedate(new Date());
             t.setModifydate(t.getCreatedate());
         }
+        t.setOperator(ShiroUtils.getUser().getUsername());
         return this.baseDao.save(t);
     }
 
@@ -65,6 +67,7 @@ public class BaseServiceImpl<T extends BaseDO<PK>, PK> implements BaseService<T,
         Assert.notNull(t, "待修改数据不可为空");
         Assert.notNull(t.getId(), "待修改数据主键可不为空");
         t.setModifydate(new Date());
+        t.setOperator(ShiroUtils.getUser().getUsername());
         return this.baseDao.update(t);
     }
 
