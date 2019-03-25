@@ -26,10 +26,26 @@
     }
 
     function validateRule() {
+        var icon = "<i class='fa fa-times-circle'></i> ";
         cbs.validate("#signupForm", {
-            rules: {},
-            messages: {}
+            rules: {
+                userName: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                userName: {
+                    required: icon + "请输入用户名"
+                },
+                password: {
+                    required: icon + "请输入密码"
+                }
+            }
         })
     }
+
 
 }(jQuery, window)

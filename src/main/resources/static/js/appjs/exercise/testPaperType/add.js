@@ -28,8 +28,22 @@
 
     function validateRule() {
         cbs.validate("#signupForm", {
-            rules: {},
-            messages: {}
+            rules: {
+                userName: {
+                    require: true
+                },
+                age: {
+                    require: true
+                }
+            },
+            messages: {
+                userName: {
+                    required: icon + "请输入用户名"
+                },
+                age: {
+                    require: icon + "请输入年龄"
+                }
+            }
         })
     }
 }(jQuery, window)
