@@ -1,61 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="col-sm-12">
-			<div class="ibox">
-				<div class="ibox-body">
-					<div class="fixed-table-toolbar">
-						<div class="columns pull-left">
-							<button shiro:hasPermission="${pathName}:${classname}:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
-							</button>
-							<button shiro:hasPermission="${pathName}:${classname}:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
-						</div>
-						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="">
-						</div>
-					</div>
-					<table id="exampleTable" data-mobile-responsive="true">
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
-		<div>
-			<script type="text/javascript">
-				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-				var s_resetPwd_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:remove">
-			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:resetPwd">
-			<script type="text/javascript">
-				var s_resetPwd_h = '';
-			</script>
-		</div>
-	</div>
-	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/${pathName}/${classname}/${classname}.js"></script>
+<div class="wrapper wrapper-content ">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div class="fixed-table-toolbar">
+                    <div class="columns pull-left">
+                        <button shiro:hasPermission="${pathName}:${classname}:add" type="button"
+                                class="btn  btn-primary" id="btn_new">
+                            <i class="fa fa-plus" aria-hidden="true"></i>添加
+                        </button>
+                        <button shiro:hasPermission="${pathName}:${classname}:batchRemove" type="button"
+                                class="btn  btn-danger"
+                                id="btn_batch_remove">
+                            <i class="fa fa-trash" aria-hidden="true"></i>删除
+                        </button>
+                    </div>
+                    <form id="searchForm">
+                        <div class="columns pull-right">
+                            <button class="btn btn-success" id="btn_search">查询</button>
+                        </div>
+                        <div class="columns pull-right col-md-2 nopadding">
+                            <input id="searchName" type="text" class="form-control"
+                                   placeholder="">
+                        </div>
+                    </form>
+                </div>
+                <table id="${classname}Table" data-mobile-responsive="true">
+                    <tr style="display: none;" checkbox="true">
+                        #foreach($column in $columns) #if($column.columnName != $pk.columnName && $column.columnName !=
+                            "operator" &&
+                            $column.columnName != "createdate" && $column.columnName !=
+                            "modifydate" )
+                            <td field="${column.attrname}" title="${column.comments}"></td>
+                        #end #end
+                        <td field="id" title="操作">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<input type="hidden" name="s_permission" shiro:hasPermission="${pathName}:${classname}:edit" value="s_edit_h">
+<input type="hidden" name="s_permission" shiro:hasPermission="${pathName}:${classname}:remove" value="s_remove_h">
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/${pathName}/${classname}/${classname}.js"></script>
 </body>
 </html>

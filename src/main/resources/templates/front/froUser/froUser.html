@@ -10,52 +10,46 @@
                 <div class="fixed-table-toolbar">
                     <div class="columns pull-left">
                         <button shiro:hasPermission="front:froUser:add" type="button" class="btn  btn-primary"
-                                onclick="add()">
+                                id="btn_new">
                             <i class="fa fa-plus" aria-hidden="true"></i>添加用户
                         </button>
                         <button shiro:hasPermission="front:froUser:batchRemove" type="button" class="btn  btn-danger"
-                                onclick="batchRemove()">
-                            <i class="fa fa-trash" aria-hidden="true"></i>删除
+                                id="btn_batch_remove">
+                            <i class="fa fa-trash" aria-hidden="true"></i>批量删除
                         </button>
                     </div>
-                    <div class="columns pull-right">
-                        <button class="btn btn-success" onclick="reLoad()">查询</button>
-                    </div>
-                    <div class="columns pull-right col-md-2 nopadding">
-                        <input id="searchName" type="text" class="form-control"
-                               placeholder="">
-                    </div>
+                    <form id="searchForm">
+                        <div class="columns pull-right">
+                            <button class="btn btn-success" id="btn_search">查询</button>
+                        </div>
+                        <div class="columns pull-right col-md-2 nopadding">
+                            <input id="searchName" type="text" class="form-control"
+                                   placeholder="">
+                        </div>
+                    </form>
                 </div>
                 <table id="exampleTable" data-mobile-responsive="true">
+                    <tr style="display: none;" checkbox="true">
+                        <td field="userNo" title="用户编码"></td>
+                        <td field="userName" title="姓名"></td>
+                        <td field="password" title="密码"></td>
+                        <td field="age" title="年龄"></td>
+                        <td field="phone" title="手机号"></td>
+                        <td field="email" title="邮箱"></td>
+                        <td field="idno" title="身份证号"></td>
+                        <td field="headPortrait" title="头像"></td>
+                        <td field="address" title="家庭住址"></td>
+                        <td field="id" title="操作">
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
-<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
-<div>
-    <script type="text/javascript">
-        var s_edit_h = 'hidden';
-        var s_remove_h = 'hidden';
-        var s_resetPwd_h = 'hidden';
-    </script>
 </div>
-<div shiro:hasPermission="front:froUser:edit">
-    <script type="text/javascript">
-        s_edit_h = '';
-    </script>
-</div>
-<div shiro:hasPermission="front:froUser:remove">
-    <script type="text/javascript">
-        var s_remove_h = '';
-    </script>
-</div>
-<div shiro:hasPermission="front:froUser:resetPwd">
-    <script type="text/javascript">
-        var s_resetPwd_h = '';
-    </script>
-</div>
-</div>
+<input type="hidden" name="s_permission" shiro:hasPermission="front:froUser:edit" value="s_edit_h">
+<input type="hidden" name="s_permission" shiro:hasPermission="front:froUser:remove" value="s_remove_h">
 <div th:include="include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/front/froUser/froUser.js"></script>
 </body>
