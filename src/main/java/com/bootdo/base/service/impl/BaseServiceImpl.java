@@ -59,7 +59,9 @@ public class BaseServiceImpl<T extends BaseDO<PK>, PK> implements BaseService<T,
             t.setCreatedate(new Date());
             t.setModifydate(t.getCreatedate());
         }
-        t.setOperator(ShiroUtils.getUser().getUsername());
+        if(null!=ShiroUtils.getUser()){
+            t.setOperator(ShiroUtils.getUser().getUsername());
+        }
         return this.baseDao.save(t);
     }
 
@@ -67,7 +69,9 @@ public class BaseServiceImpl<T extends BaseDO<PK>, PK> implements BaseService<T,
         Assert.notNull(t, "待修改数据不可为空");
         Assert.notNull(t.getId(), "待修改数据主键可不为空");
         t.setModifydate(new Date());
-        t.setOperator(ShiroUtils.getUser().getUsername());
+        if(null!=ShiroUtils.getUser()){
+            t.setOperator(ShiroUtils.getUser().getUsername());
+        }
         return this.baseDao.update(t);
     }
 
