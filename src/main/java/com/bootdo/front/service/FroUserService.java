@@ -23,4 +23,8 @@ public interface FroUserService extends BaseService<FroUserDO, String> {
      * @Param [froUser]
      **/
     int saveExp(FroUserDO froUser);
+
+    int loginExp(FroUserDO froUser);
+
+    int getUserName(FroUserDO froUser);
 }

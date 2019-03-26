@@ -12,4 +12,10 @@ public interface FroUserActionService {
      */
     @PostMapping(value = "/register")
     public R register(FroUserDO froUser);
+
+    /**
+     * 前端登录功能
+     */
+    @GetMapping(value = "/login")
+    public R login(FroUserDO froUser);
 }
