@@ -4,18 +4,21 @@
 <mapper namespace="com.bootdo.exercise.dao.TestPaperTypeDao">
 
 	<select id="get" resultType="com.bootdo.exercise.domain.TestPaperTypeDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`exercise_title`,`exercise_type` from exercise_test_paper_type where id = #{value}
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_number`,`exercise_title`,`exercise_type`,`exercise_time`,`exercise_number` from exercise_test_paper_type where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperTypeDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`exercise_title`,`exercise_type` from exercise_test_paper_type
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_number`,`exercise_title`,`exercise_type`,`exercise_time`,`exercise_number` from exercise_test_paper_type
         <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperNumber != null and testPaperNumber != ''"> and test_paper_number = #{testPaperNumber} </if>
 		  		  <if test="exerciseTitle != null and exerciseTitle != ''"> and exercise_title = #{exerciseTitle} </if>
 		  		  <if test="exerciseType != null and exerciseType != ''"> and exercise_type = #{exerciseType} </if>
+		  		  <if test="exerciseTime != null and exerciseTime != ''"> and exercise_time = #{exerciseTime} </if>
+		  		  <if test="exerciseNumber != null and exerciseNumber != ''"> and exercise_number = #{exerciseNumber} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -37,8 +40,11 @@
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperNumber != null and testPaperNumber != ''"> and test_paper_number = #{testPaperNumber} </if>
 		  		  <if test="exerciseTitle != null and exerciseTitle != ''"> and exercise_title = #{exerciseTitle} </if>
 		  		  <if test="exerciseType != null and exerciseType != ''"> and exercise_type = #{exerciseType} </if>
+		  		  <if test="exerciseTime != null and exerciseTime != ''"> and exercise_time = #{exerciseTime} </if>
+		  		  <if test="exerciseNumber != null and exerciseNumber != ''"> and exercise_number = #{exerciseNumber} </if>
 		  		</where>
 	</select>
 
@@ -49,8 +55,11 @@
                     			`operator`, 
                     			`createdate`, 
                     			`modifydate`, 
+                    			`test_paper_number`, 
                     			`exercise_title`, 
-                    			`exercise_type`
+                    			`exercise_type`, 
+                    			`exercise_time`, 
+                    			`exercise_number`
             		)
 		values
 		(
@@ -58,8 +67,11 @@
                                             			#{operator}, 
                                             			now(), 
                                             			now(), 
+                                            			#{testPaperNumber}, 
                                             			#{exerciseTitle}, 
-                                            			#{exerciseType}
+                                            			#{exerciseType}, 
+                                            			#{exerciseTime}, 
+                                            			#{exerciseNumber}
                         		)
 	</insert>
 
@@ -68,8 +80,11 @@
         <set>
                                                                                                     <if test="operator != null">`operator` = #{operator}, </if>
                                                                                                             <if test="createdate != null">`createdate` = #{createdate}, </if>
-                                                                                                            `modifydate` = now(),                                                                                                             <if test="exerciseTitle != null">`exercise_title` = #{exerciseTitle}, </if>
-                                                                                                            <if test="exerciseType != null">`exercise_type` = #{exerciseType}</if>
+                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperNumber != null">`test_paper_number` = #{testPaperNumber}, </if>
+                                                                                                            <if test="exerciseTitle != null">`exercise_title` = #{exerciseTitle}, </if>
+                                                                                                            <if test="exerciseType != null">`exercise_type` = #{exerciseType}, </if>
+                                                                                                            <if test="exerciseTime != null">`exercise_time` = #{exerciseTime}, </if>
+                                                                                                            <if test="exerciseNumber != null">`exercise_number` = #{exerciseNumber}</if>
                                                         </set>
         where id = #{id}
     </update>

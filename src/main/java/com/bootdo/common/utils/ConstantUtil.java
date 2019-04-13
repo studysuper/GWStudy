@@ -15,4 +15,8 @@ public interface ConstantUtil {
      * 最小值
      */
     int MIN_VALUE = 1;
+
+    String TEST_PAPERT_NO = "SJ";
+
+
 }

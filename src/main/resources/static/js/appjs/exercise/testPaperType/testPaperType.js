@@ -2,7 +2,7 @@
     'use strict';
 
     var prefix = "/exercise/testPaperType", sparr = {};
-
+    var id = 'undefined';
     $(function () {
         $("input[name='s_permission']").each(function (index, element) {
             sparr[element.value] = true;
@@ -10,9 +10,53 @@
         load();
         //为按钮添加事件
         $("#btn_search").on("click", reLoad);
-        $("#btn_new").on("click", add);
+        $("#btn_add").on("click", add);
         $("#btn_batch_remove").on("click", batchRemove);
+        $("#btn_new").on("click", refreshNew);
+
+        //初始化上传文件
+        initUploadFile();
     });
+
+    function refreshNew() {
+        var rows = $("#testPaperTypeTable").bootstrapTable('getSelections');
+        if (rows != 0) {
+            id = rows[0].id;
+        }
+    }
+
+    /**
+     * @Author ZQ
+     * @Description //导入excel文档
+     * @Date 2019/3/26 18:57
+     * @Param
+     * @return
+     **/
+    function initUploadFile() {
+        layui.use('upload', function () {
+            var upload = layui.upload;
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#btn_new', //绑定元素
+                url: prefix + '/save', //上传接口
+                size: 1000,
+                accept: 'file',
+                before: function (input) {
+                    var data = {};
+                    data.id = id;
+                    this.data = data;
+                },
+                done: function (r) {
+                    layer.msg(r.msg);
+                    // app.getData();
+                    reLoad();
+                },
+                error: function (r) {
+                    layer.msg(r.msg);
+                }
+            });
+        });
+    }
 
     window.load = function () {
         cbs.dataTable($("#testPaperTypeTable"), {
@@ -21,7 +65,16 @@
             pageSize: 10,
             paramsForm: $("#searchForm"),
             onDblClickRow: function (row, $element) {
-                edit(row.id);
+                // edit(row.id);
+            },
+            formatters: {
+                id: function (value, row, index) {
+                    var a = '<a class="btn btn-primary btn-sm ' + sparr.s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+                        + row.id + '\')"><i class="fa fa-edit"></i></a> ';
+                    var b = '<a class="btn btn-warning btn-sm ' + sparr.s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                        + row.topicId + '\')"><i class="fa fa-remove"></i></a> ';
+                    return b;
+                }
             }
         });
     };
@@ -31,7 +84,7 @@
     };
 
     window.add = function () {
-        layer.open({
+        var page = layer.open({
             type: 2,
             title: '增加',
             maxmin: true,
@@ -39,10 +92,11 @@
             area: ['800px', '490px'],
             content: prefix + '/add' // iframe的url
         });
+        // layer.full(page);
     }
 
     window.edit = function (id) {
-        layer.open({
+        var page = layer.open({
             type: 2,
             title: '编辑',
             maxmin: true,
@@ -50,13 +104,15 @@
             area: ['800px', '490px'],
             content: prefix + '/edit/' + id // iframe的url
         });
+        layer.full(page);
+
     }
 
-    function remove(id) {
+    window.remove = function (id) {
         cbs.remove(prefix + '/remove', id);
     }
 
-    function batchRemove() {
+    window.batchRemove = function () {
         cbs.batchRemove($("#testPaperTypeTable"), prefix + '/batchRemove');
     }
 }(jQuery, window)

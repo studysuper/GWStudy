@@ -3,7 +3,7 @@
 
 <mapper namespace="com.bootdo.front.dao.FroUserDao">
 
-	<select id="get" resultType="com.bootdo.front.domain.FroUserDO">
+	<select id="get" resultType="com.bootdo.front.domain.FroUserDO" >
 		select `id`,`operator`,`createdate`,`modifydate`,`user_no`,`user_name`,`password`,`age`,`phone`,`email`,`idno`,`head_portrait`,`address` from front_fro_user where id = #{value}
 	</select>
 

@@ -22,6 +22,15 @@
             paramsForm: $("#searchForm"),
             onDblClickRow: function (row, $element) {
                 edit(row.id);
+            },
+            formatters: {
+                id: function (value, row, index) {
+                    var a = '<a class="btn btn-primary btn-sm ' + sparr.s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+                        + row.id + '\')"><i class="fa fa-edit"></i></a> ';
+                    var b = '<a class="btn btn-warning btn-sm ' + sparr.s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                        + row.id + '\')"><i class="fa fa-remove"></i></a> ';
+                    return a + b;
+                }
             }
         });
     };
@@ -52,11 +61,11 @@
         });
     }
 
-    function remove(id) {
+    window.remove = function (id) {
         cbs.remove(prefix + '/remove', id);
     }
 
-    function batchRemove() {
+    window.batchRemove = function () {
         cbs.batchRemove($("#${classname}Table"), prefix + '/batchRemove');
     }
 }(jQuery, window)

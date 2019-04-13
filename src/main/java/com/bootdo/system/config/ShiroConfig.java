@@ -5,6 +5,7 @@ import com.bootdo.common.config.Constant;
 import com.bootdo.common.redis.shiro.RedisCacheManager;
 import com.bootdo.common.redis.shiro.RedisManager;
 import com.bootdo.common.redis.shiro.RedisSessionDAO;
+import com.bootdo.common.thymeleaf.CbsCode;
 import com.bootdo.system.shiro.UserRealm;
 //import org.apache.shiro.cache.CacheManager;
 import net.sf.ehcache.CacheManager;
@@ -63,6 +64,18 @@ public class ShiroConfig {
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
+    }
+
+    /**
+     * @return com.bootdo.common.thymeleaf.CbsCode
+     * @Author ZQ
+     * @Description //注入自定义前端标签
+     * @Date 2019/3/26 14:50
+     * @Param []
+     **/
+    @Bean
+    public CbsCode cbsCode() {
+        return new CbsCode();
     }
 
     @Bean

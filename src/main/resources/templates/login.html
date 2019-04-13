@@ -72,10 +72,14 @@
 <script src="/js/plugins/validate/messages_zh.min.js" th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
 <script src="/js/plugins/layer/layer.min.js" th:src="@{/js/plugins/layer/layer.min.js}"></script>
 <script type="text/javascript">
+    //这个方法页面初始化的时候执行
     $(document).ready(function () {
+
+        //为login 添加click事件，并且提交表单
         $("#login").on('click', function () {
             $("#signupForm").submit();
         });
+        // 验证用户名，密码不能为空
         validateRule();
         $("body").keydown(keyDownLogon);
         // getVerify($("#imgVerify"));

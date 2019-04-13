@@ -32,4 +32,6 @@ public interface DictDao {
 	int batchRemove(Long[] ids);
 
 	List<DictDO> listType();
+
+	List<DictDO> childDictList(String dictCode);
 }

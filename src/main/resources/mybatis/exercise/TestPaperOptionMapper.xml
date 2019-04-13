@@ -4,18 +4,21 @@
 <mapper namespace="com.bootdo.exercise.dao.TestPaperOptionDao">
 
 	<select id="get" resultType="com.bootdo.exercise.domain.TestPaperOptionDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_option`,`test_paper_topic_id` from exercise_test_paper_option where id = #{value}
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic_id`,`test_paper_option_A`,`test_paper_option_B`,`test_paper_option_C`,`test_paper_option_D` from exercise_test_paper_option where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperOptionDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_option`,`test_paper_topic_id` from exercise_test_paper_option
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic_id`,`test_paper_option_A`,`test_paper_option_B`,`test_paper_option_C`,`test_paper_option_D` from exercise_test_paper_option
         <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
-		  		  <if test="testPaperOption != null and testPaperOption != ''"> and test_paper_option = #{testPaperOption} </if>
 		  		  <if test="testPaperTopicId != null and testPaperTopicId != ''"> and test_paper_topic_id = #{testPaperTopicId} </if>
+		  		  <if test="testPaperOptionA != null and testPaperOptionA != ''"> and test_paper_option_A = #{testPaperOptionA} </if>
+		  		  <if test="testPaperOptionB != null and testPaperOptionB != ''"> and test_paper_option_B = #{testPaperOptionB} </if>
+		  		  <if test="testPaperOptionC != null and testPaperOptionC != ''"> and test_paper_option_C = #{testPaperOptionC} </if>
+		  		  <if test="testPaperOptionD != null and testPaperOptionD != ''"> and test_paper_option_D = #{testPaperOptionD} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -37,8 +40,11 @@
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
-		  		  <if test="testPaperOption != null and testPaperOption != ''"> and test_paper_option = #{testPaperOption} </if>
 		  		  <if test="testPaperTopicId != null and testPaperTopicId != ''"> and test_paper_topic_id = #{testPaperTopicId} </if>
+		  		  <if test="testPaperOptionA != null and testPaperOptionA != ''"> and test_paper_option_A = #{testPaperOptionA} </if>
+		  		  <if test="testPaperOptionB != null and testPaperOptionB != ''"> and test_paper_option_B = #{testPaperOptionB} </if>
+		  		  <if test="testPaperOptionC != null and testPaperOptionC != ''"> and test_paper_option_C = #{testPaperOptionC} </if>
+		  		  <if test="testPaperOptionD != null and testPaperOptionD != ''"> and test_paper_option_D = #{testPaperOptionD} </if>
 		  		</where>
 	</select>
 
@@ -49,8 +55,11 @@
                     			`operator`, 
                     			`createdate`, 
                     			`modifydate`, 
-                    			`test_paper_option`, 
-                    			`test_paper_topic_id`
+                    			`test_paper_topic_id`, 
+                    			`test_paper_option_A`, 
+                    			`test_paper_option_B`, 
+                    			`test_paper_option_C`, 
+                    			`test_paper_option_D`
             		)
 		values
 		(
@@ -58,8 +67,11 @@
                                             			#{operator}, 
                                             			now(), 
                                             			now(), 
-                                            			#{testPaperOption}, 
-                                            			#{testPaperTopicId}
+                                            			#{testPaperTopicId}, 
+                                            			#{testPaperOptionA}, 
+                                            			#{testPaperOptionB}, 
+                                            			#{testPaperOptionC}, 
+                                            			#{testPaperOptionD}
                         		)
 	</insert>
 
@@ -68,8 +80,11 @@
         <set>
                                                                                                     <if test="operator != null">`operator` = #{operator}, </if>
                                                                                                             <if test="createdate != null">`createdate` = #{createdate}, </if>
-                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperOption != null">`test_paper_option` = #{testPaperOption}, </if>
-                                                                                                            <if test="testPaperTopicId != null">`test_paper_topic_id` = #{testPaperTopicId}</if>
+                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperTopicId != null">`test_paper_topic_id` = #{testPaperTopicId}, </if>
+                                                                                                            <if test="testPaperOptionA != null">`test_paper_option_A` = #{testPaperOptionA}, </if>
+                                                                                                            <if test="testPaperOptionB != null">`test_paper_option_B` = #{testPaperOptionB}, </if>
+                                                                                                            <if test="testPaperOptionC != null">`test_paper_option_C` = #{testPaperOptionC}, </if>
+                                                                                                            <if test="testPaperOptionD != null">`test_paper_option_D` = #{testPaperOptionD}</if>
                                                         </set>
         where id = #{id}
     </update>

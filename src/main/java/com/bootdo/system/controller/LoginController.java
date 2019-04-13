@@ -63,14 +63,26 @@ public class LoginController extends BaseController {
         model.addAttribute("username", getUser().getUsername());
         return "index_v1";
     }
-
+    /**
+     * @Author ZQ
+     * @Description // 负责 跳转到登录页面
+     * @Date 2019/4/13 14:03
+     * @Param [model]
+     * @return java.lang.String
+     **/
     @GetMapping("/login")
     String login(Model model) {
         model.addAttribute("username", bootdoConfig.getUsername());
         model.addAttribute("password", bootdoConfig.getPassword());
         return "login";
     }
-
+    /**
+     * @Author ZQ
+     * @Description // 当点击登录按钮的时候 ，走这个方法 成功
+     * @Date 2019/4/13 14:03
+     * @Param [username, password, verify, request]
+     * @return com.bootdo.common.utils.R
+     **/
     @Log("登录")
     @PostMapping("/login")
     @ResponseBody

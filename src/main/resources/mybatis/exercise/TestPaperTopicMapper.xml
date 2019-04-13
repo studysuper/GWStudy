@@ -4,18 +4,20 @@
 <mapper namespace="com.bootdo.exercise.dao.TestPaperTopicDao">
 
 	<select id="get" resultType="com.bootdo.exercise.domain.TestPaperTopicDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic`,`test_paper_type_id` from exercise_test_paper_topic where id = #{value}
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_no`,`test_paper_topic`,`test_paper_type_id`,`test_paper_number` from exercise_test_paper_topic where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.exercise.domain.TestPaperTopicDO">
-		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_topic`,`test_paper_type_id` from exercise_test_paper_topic
+		select `id`,`operator`,`createdate`,`modifydate`,`test_paper_no`,`test_paper_topic`,`test_paper_type_id`,`test_paper_number` from exercise_test_paper_topic
         <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperNo != null and testPaperNo != ''"> and test_paper_no = #{testPaperNo} </if>
 		  		  <if test="testPaperTopic != null and testPaperTopic != ''"> and test_paper_topic = #{testPaperTopic} </if>
 		  		  <if test="testPaperTypeId != null and testPaperTypeId != ''"> and test_paper_type_id = #{testPaperTypeId} </if>
+		  		  <if test="testPaperNumber != null and testPaperNumber != ''"> and test_paper_number = #{testPaperNumber} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -37,8 +39,10 @@
 		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
 		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
 		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="testPaperNo != null and testPaperNo != ''"> and test_paper_no = #{testPaperNo} </if>
 		  		  <if test="testPaperTopic != null and testPaperTopic != ''"> and test_paper_topic = #{testPaperTopic} </if>
 		  		  <if test="testPaperTypeId != null and testPaperTypeId != ''"> and test_paper_type_id = #{testPaperTypeId} </if>
+		  		  <if test="testPaperNumber != null and testPaperNumber != ''"> and test_paper_number = #{testPaperNumber} </if>
 		  		</where>
 	</select>
 
@@ -49,8 +53,10 @@
                     			`operator`, 
                     			`createdate`, 
                     			`modifydate`, 
+                    			`test_paper_no`, 
                     			`test_paper_topic`, 
-                    			`test_paper_type_id`
+                    			`test_paper_type_id`, 
+                    			`test_paper_number`
             		)
 		values
 		(
@@ -58,8 +64,10 @@
                                             			#{operator}, 
                                             			now(), 
                                             			now(), 
+                                            			#{testPaperNo}, 
                                             			#{testPaperTopic}, 
-                                            			#{testPaperTypeId}
+                                            			#{testPaperTypeId}, 
+                                            			#{testPaperNumber}
                         		)
 	</insert>
 
@@ -68,8 +76,10 @@
         <set>
                                                                                                     <if test="operator != null">`operator` = #{operator}, </if>
                                                                                                             <if test="createdate != null">`createdate` = #{createdate}, </if>
-                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperTopic != null">`test_paper_topic` = #{testPaperTopic}, </if>
-                                                                                                            <if test="testPaperTypeId != null">`test_paper_type_id` = #{testPaperTypeId}</if>
+                                                                                                            `modifydate` = now(),                                                                                                             <if test="testPaperNo != null">`test_paper_no` = #{testPaperNo}, </if>
+                                                                                                            <if test="testPaperTopic != null">`test_paper_topic` = #{testPaperTopic}, </if>
+                                                                                                            <if test="testPaperTypeId != null">`test_paper_type_id` = #{testPaperTypeId}, </if>
+                                                                                                            <if test="testPaperNumber != null">`test_paper_number` = #{testPaperNumber}</if>
                                                         </set>
         where id = #{id}
     </update>

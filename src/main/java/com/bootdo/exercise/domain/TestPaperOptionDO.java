@@ -13,15 +13,21 @@ import java.util.Date;
  *
  * @author zq
  * @email 519996418
- * @date 2019-03-22 18:11:47
+ * @date 2019-04-13 15:47:13
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TestPaperOptionDO extends BaseDO<String> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-                                                                        //试题选项
-            private String testPaperOption;
-                                //试题题目id
+                                                                        //试题题目id
             private String testPaperTopicId;
+                                //试题选项
+            private String testPaperOptionA;
+                                //试题选项
+            private String testPaperOptionB;
+                                //试题选项
+            private String testPaperOptionC;
+                                //试题选项
+            private String testPaperOptionD;
             }

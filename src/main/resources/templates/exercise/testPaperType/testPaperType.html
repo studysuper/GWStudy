@@ -2,6 +2,12 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<link rel="shortcut icon" th:href="@{favicon.ico}">
+<link th:href="@{/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+<link th:href="@{/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
+<link th:href="@{/css/animate.css}" rel="stylesheet">
+<link href="/css/layui.css" rel="stylesheet">
+<link th:href="@{/css/style.css?v=4.1.0}" rel="stylesheet">
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
     <div class="col-sm-12">
@@ -9,15 +15,19 @@
             <div class="ibox-body">
                 <div class="fixed-table-toolbar">
                     <div class="columns pull-left">
-                        <button shiro:hasPermission="exercise:testPaperType:add" type="button"
-                                class="btn  btn-primary" id="btn_new">
-                            <i class="fa fa-plus" aria-hidden="true"></i>添加
+                        <button type="button" shiro:hasPermission="exercise:testPaperType:add" class="btn  btn-primary"
+                                id="btn_add">
+                            <i class="fa fa-plus" aria-hidden="true"></i>添加试卷
                         </button>
-                        <button shiro:hasPermission="exercise:testPaperType:batchRemove" type="button"
+                        <button type="button" shiro:hasPermission="exercise:testPaperType:add" class="layui-btn"
+                                id="btn_new">
+                            <i class="fa fa-cloud"></i>导入试题
+                        </button>
+                     <!--   <button shiro:hasPermission="exercise:testPaperType:batchRemove" type="button"
                                 class="btn  btn-danger"
                                 id="btn_batch_remove">
-                            <i class="fa fa-trash" aria-hidden="true"></i>删除
-                        </button>
+                            <i class="fa fa-trash" aria-hidden="true"></i>批量删除
+                        </button>-->
                     </div>
                     <form id="searchForm">
                         <div class="columns pull-right">
@@ -31,8 +41,17 @@
                 </div>
                 <table id="testPaperTypeTable" data-mobile-responsive="true">
                     <tr style="display: none;" checkbox="true">
+                        <td field="testPaperNumber" title="试卷编号"></td>
                         <td field="exerciseTitle" title="试卷题目"></td>
-                        <td field="exerciseType" title="试题类型(01选择题（单选），02填空题，03判断题，04主观题)"></td>
+                        <td field="exerciseTime" title="试卷时间"></td>
+                        <td field="exerciseNumber" title="试卷总分"></td>
+                        <td field="testPaperTopic" title="试题题目"></td>
+                        <td field="paperNumber" title="试题分数"></td>
+                        <td field="testPaperOptionA" title="试题选项A"></td>
+                        <td field="testPaperOptionB" title="试题选项B"></td>
+                        <td field="testPaperOptionC" title="试题选项C"></td>
+                        <td field="testPaperOptionD" title="试题选项D"></td>
+                        <td field="testPaperAnswer" title="试题答案"></td>
                         <td field="id" title="操作">
                         </td>
                     </tr>
@@ -45,6 +64,12 @@
 <input type="hidden" name="s_permission" shiro:hasPermission="exercise:testPaperType:edit" value="s_edit_h">
 <input type="hidden" name="s_permission" shiro:hasPermission="exercise:testPaperType:remove" value="s_remove_h">
 <div th:include="include :: footer"></div>
+<script th:src="@{/js/content.js?v=1.0.0}"></script>
+<script th:src="@{/js/layui.js}"></script>
+<script th:src="@{/js/plugins/clipboard/clipboard.min.js}"></script>
+<script th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script th:rc="@{/js/vue.min.js}"></script>
+
 <script type="text/javascript" src="/js/appjs/exercise/testPaperType/testPaperType.js"></script>
 </body>
 </html>

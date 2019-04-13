@@ -106,4 +106,9 @@ public class DictServiceImpl implements DictService {
         return dictDao.list(param);
     }
 
+    @Override
+    public List<DictDO> childDictList(String dictCode) {
+        return dictDao.childDictList(dictCode);
+    }
+
 }

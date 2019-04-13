@@ -16,7 +16,7 @@
                         <button shiro:hasPermission="${pathName}:${classname}:batchRemove" type="button"
                                 class="btn  btn-danger"
                                 id="btn_batch_remove">
-                            <i class="fa fa-trash" aria-hidden="true"></i>删除
+                            <i class="fa fa-trash" aria-hidden="true"></i>批量删除
                         </button>
                     </div>
                     <form id="searchForm">

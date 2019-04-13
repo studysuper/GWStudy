@@ -27,6 +27,7 @@
     }
 
     function validateRule() {
+        var icon = "<i class='fa fa-times-circle'></i> ";
         cbs.validate("#signupForm", {
             rules: {},
             messages: {}
