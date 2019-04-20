@@ -7,8 +7,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * 支持解决跨域请求
- */
+ * @Author ZQ
+ * @Description //支持解决跨域请求
+ * @Date 2019/4/20 18:20
+ * @Param
+ * @return
+ **/
 @Configuration
 public class CorsConfig {
     private CorsConfiguration buildConfig() {

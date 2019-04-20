@@ -38,7 +38,7 @@ public class FroUserAction implements FroUserActionService {
         if(froUserService.loginExp(forUser) > 0) {
             return R.ok();
         }
-        return R.error();
+        return R.error("用户名或密码不正确");
     }
 
     private String validate(FroUserDO forUser) {

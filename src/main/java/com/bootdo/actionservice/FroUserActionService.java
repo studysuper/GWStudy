@@ -16,6 +16,6 @@ public interface FroUserActionService {
     /**
      * 前端登录功能
      */
-    @GetMapping(value = "/login")
+    @PostMapping(value = "/login")
     public R login(FroUserDO froUser);
 }
