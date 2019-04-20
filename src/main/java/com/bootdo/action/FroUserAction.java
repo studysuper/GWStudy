@@ -24,7 +24,7 @@ public class FroUserAction implements FroUserActionService {
             return R.error("用户名已存在");
         }
         if (froUserService.saveExp(froUser) > 0) {
-            return R.ok();
+            return R.ok("register");
         }
         return R.error();
     }
@@ -36,7 +36,7 @@ public class FroUserAction implements FroUserActionService {
             return R.error(msg);
         }
         if(froUserService.loginExp(forUser) > 0) {
-            return R.ok();
+            return R.ok("login");
         }
         return R.error("用户名或密码不正确");
     }
