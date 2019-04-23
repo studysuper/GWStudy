@@ -4,11 +4,11 @@
 <mapper namespace="com.bootdo.blog.dao.ContentDao">
 
 	<select id="get" resultType="com.bootdo.blog.domain.ContentDO">
-		select `cid`,`title`,`slug`,`created`,`modified`,`content`,`type`,`tags`,`categories`,`hits`,`comments_num`,`allow_comment`,`allow_ping`,`allow_feed`,`status`,`author`,`gtm_create`,`gtm_modified` from blog_content where cid = #{value}
+		select `cid`,`title`,`slug`,`created`,`modified`,`content`,`type`,`tags`,`categories`,`hits`,`comments_num`,`allow_comment`,`allow_ping`,`allow_feed`,`status`,`author`,`gtm_create`,`gtm_modified`,location from blog_content where cid = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.blog.domain.ContentDO">
-		select `cid`,`title`,`slug`,`created`,`modified`,`type`,`tags`,`categories`,`hits`,`comments_num`,`allow_comment`,`allow_ping`,`allow_feed`,`status`,`author`,`gtm_create`,`gtm_modified` from blog_content
+		select `cid`,`title`,`slug`,`created`,`modified`,`type`,`tags`,`categories`,`hits`,`comments_num`,`allow_comment`,`allow_ping`,`allow_feed`,`status`,`author`,`gtm_create`,`gtm_modified`,location from blog_content
         <where>  
 		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
 		  		  <if test="title != null and title != ''"> and title = #{title} </if>
@@ -85,7 +85,8 @@
 			`status`, 
 			`author`, 
 			`gtm_create`, 
-			`gtm_modified`
+			`gtm_modified`,
+			location
 		)
 		values
 		(
@@ -105,7 +106,8 @@
 			#{status}, 
 			#{author}, 
 			#{gtmCreate}, 
-			#{gtmModified}
+			#{gtmModified},
+			#{location}
 		)
 	</insert>
 	 
@@ -128,7 +130,9 @@
 			<if test="status != null">`status` = #{status}, </if>
 			<if test="author != null">`author` = #{author}, </if>
 			<if test="gtmCreate != null">`gtm_create` = #{gtmCreate}, </if>
-			<if test="gtmModified != null">`gtm_modified` = #{gtmModified}</if>
+			<if test="gtmModified != null">`gtm_modified` = #{gtmModified},</if>
+			<if test="location != null">`location` = #{location}</if>
+
 		</set>
 		where cid = #{cid}
 	</update>

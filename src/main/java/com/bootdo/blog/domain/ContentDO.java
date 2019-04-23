@@ -51,6 +51,8 @@ public class ContentDO implements Serializable {
 	private Date gtmCreate;
 	//修改时间
 	private Date gtmModified;
+	//位置
+	private String location;
 
 	/**
 	 * 设置：
@@ -267,6 +269,14 @@ public class ContentDO implements Serializable {
 	 */
 	public Date getGtmModified() {
 		return gtmModified;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override
