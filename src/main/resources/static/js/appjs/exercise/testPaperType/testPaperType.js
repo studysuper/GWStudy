@@ -13,10 +13,31 @@
         $("#btn_add").on("click", add);
         $("#btn_batch_remove").on("click", batchRemove);
         $("#btn_new").on("click", refreshNew);
+        $("#down_file").on("click", downFile);
 
         //初始化上传文件
         initUploadFile();
     });
+    
+    function downFile() {
+        var url = _ctx + "/api/testpaper/createTestPaper";
+        $.ajax({
+            type: 'POST',
+            data: {
+                "id": "31d54cafd95c4eb5a7abaa3186678b2f"
+            },
+            url: url,
+            success: function (r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+
+    }
 
     function refreshNew() {
         var rows = $("#testPaperTypeTable").bootstrapTable('getSelections');

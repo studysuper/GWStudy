@@ -3,6 +3,8 @@ package com.bootdo.front.domain;
 import com.bootdo.base.domain.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;

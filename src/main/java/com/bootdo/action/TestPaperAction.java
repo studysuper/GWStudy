@@ -5,13 +5,19 @@ import com.bootdo.common.utils.Query;
 import com.bootdo.exercise.domain.TestPaperTypeDO;
 import com.bootdo.exercise.domain.TestPaperTypeExpDO;
 import com.bootdo.exercise.service.TestPaperTypeService;
+import com.bootdo.front.domain.FroUserDO;
+import org.apache.commons.io.IOUtils;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.math.BigInteger;
@@ -44,60 +50,14 @@ public class TestPaperAction implements TestPaperActionService {
     }
 
     @Override
-    public void createTestPaper(@RequestBody Map<String, Object> map, HttpServletResponse response) throws IOException {
+    public String createTestPaper(@RequestBody Map<String, Object> map, HttpServletRequest request,
+                                  HttpServletResponse response) throws IOException {
         Query query = new Query(map);
         List<TestPaperTypeExpDO> testPaperTypeExpDOS = this.paperTypeService.listExp(query);
         String filePath = createWordFile(testPaperTypeExpDOS);
-        downFile(filePath, response);
+        return filePath;
     }
 
-    /**
-     * @return void
-     * @Author ZQ
-     * @Description //文件下载
-     * @Date 2019/4/23 20:22
-     * @Param [file, response]
-     **/
-    private String downFile(String filePath, HttpServletResponse response) throws UnsupportedEncodingException {
-        response.setContentType("application/x-download");
-       /* String filedownload = "";
-        String filedisplay = "";
-        filedisplay = URLEncoder.encode(filedisplay, "UTF-8");*/
-        response.addHeader("Content-Disposition", "attachment;filename=" + "123.docx");
-        OutputStream outp = null;
-        FileInputStream in = null;
-        try {
-            outp = response.getOutputStream();
-            in = new FileInputStream(filePath);
-            byte[] b = new byte[1024];
-            int i = 0;
-            while ((i = in.read(b)) > 0) {
-                outp.write(b, 0, i);
-            }
-            outp.flush();
-        } catch (Exception e) {
-            System.out.println("Error!");
-            e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                in = null;
-            }
-            if (outp != null) {
-                try {
-                    outp.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                outp = null;
-            }
-        }
-        return null;
-    }
 
     /**
      * @return void
@@ -112,13 +72,15 @@ public class TestPaperAction implements TestPaperActionService {
         String fileName = testPaperTypeDO.getExerciseTitle();
         int totolTime = testPaperTypeDO.getExerciseTime();//总时间
         int totolNumber = testPaperTypeDO.getExerciseNumber();//总分数
-
-        String path = "D:\\wordFile\\";
+        //src\main\resources\static
+        String rootPath = ResourceUtils.getURL("classpath:").getPath().split("target")[0];
+        rootPath = rootPath.replaceFirst("/", "");
+        String path = rootPath.trim() + "/src/main/resources/static/file/";
         File dir = new File(path);
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        String filePath = path + fileName + ".docx";
+        String filePath = path + fileName + ".doc";
         File file = new File(filePath);
         if (!file.exists()) {
             file.delete();

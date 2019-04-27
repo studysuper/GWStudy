@@ -7,6 +7,7 @@ import com.bootdo.front.domain.FroUserDO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,5 +51,6 @@ public interface TestPaperActionService {
      * @Param [map]
      **/
     @PostMapping("/createTestPaper")
-    void createTestPaper(Map<String, Object> map, HttpServletResponse response) throws IOException;
+    String createTestPaper(Map<String, Object> map, HttpServletRequest request,
+                           HttpServletResponse response) throws IOException;
 }
