@@ -5,6 +5,7 @@ import com.bootdo.exercise.domain.TestPaperTypeDO;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import com.bootdo.base.service.BaseService;
 import com.bootdo.exercise.domain.TestPaperTypeExpDO;
@@ -34,4 +35,16 @@ public interface TestPaperTypeService extends BaseService<TestPaperTypeDO, Strin
     int countExp(Query query);
 
     int batchRemoveExp(String[] ids);
+    /**
+     * @Author ZQ
+     * @Description //交卷功能实现
+     * @Date 2019/5/2 23:41
+     * @Param [map]
+     * @return java.lang.String
+     **/
+    String finishTestPaper(Map<String, Object> map);
+
+    List<TestPaperTypeDO> queryRecord(Map<String, Object> map);
+
+    List<TestPaperTypeExpDO> querRecordDetial(Map<String, Object> map);
 }

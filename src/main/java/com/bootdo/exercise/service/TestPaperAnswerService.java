@@ -13,5 +13,6 @@ import com.bootdo.base.service.BaseService;
  * @date 2019-03-22 18:11:47
  */
 public interface TestPaperAnswerService extends BaseService<TestPaperAnswerDO,String>{
-	
+
+    TestPaperAnswerDO queryByTopicId(String topicId);
 }

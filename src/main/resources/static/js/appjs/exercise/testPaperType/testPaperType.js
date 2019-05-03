@@ -13,10 +13,10 @@
         $("#btn_add").on("click", add);
         $("#btn_batch_remove").on("click", batchRemove);
         $("#btn_new").on("click", refreshNew);
-        $("#down_file").on("click", downFile);
+        // $("#down_file").on("click", downFile);
 
         //初始化上传文件
-        initUploadFile();
+        // initUploadFile();
     });
     
     function downFile() {

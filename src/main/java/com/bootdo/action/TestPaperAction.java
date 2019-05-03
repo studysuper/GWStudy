@@ -58,6 +58,21 @@ public class TestPaperAction implements TestPaperActionService {
         return filePath;
     }
 
+    @Override
+    public String finishTestPaper(@RequestBody Map<String, Object> map) {
+        return paperTypeService.finishTestPaper(map);
+    }
+
+    @Override
+    public List<TestPaperTypeDO> queryRecord(@RequestBody Map<String, Object> map) {
+        return paperTypeService.queryRecord(map);
+    }
+
+    @Override
+    public List<TestPaperTypeExpDO> querRecordDetial(@RequestBody Map<String, Object> map) {
+        return paperTypeService.querRecordDetial(map);
+    }
+
 
     /**
      * @return void

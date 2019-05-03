@@ -19,7 +19,7 @@
         c.test_paper_option_B,
         c.test_paper_option_C,
         c.test_paper_option_D,
-        d.test_paper_answer
+        d.test_paper_answerlistExp
         FROM
         exercise_test_paper_type a
         LEFT JOIN exercise_test_paper_topic b ON a.id = b.test_paper_type_id

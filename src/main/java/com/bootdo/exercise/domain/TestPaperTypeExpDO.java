@@ -46,4 +46,6 @@ public class TestPaperTypeExpDO extends BaseDO<String> implements Serializable {
     private String testPaperOptionD;
     //试题答案
     private String testPaperAnswer;
+    //你提交的答案
+    private String yourAnswer;
 }

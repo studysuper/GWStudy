@@ -32,7 +32,7 @@ public class FroUserDO extends BaseDO<String> implements Serializable {
                                 //年龄
             private Integer age;
                                 //手机号
-            private Integer phone;
+            private String phone;
                                 //邮箱
             private String email;
                                 //身份证号

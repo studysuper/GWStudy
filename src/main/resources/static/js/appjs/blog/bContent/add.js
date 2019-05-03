@@ -35,7 +35,8 @@ function save(status) {
 			if (r.code == 0) {
 				parent.layer.msg(r.msg);
 				parent.reLoad();
-				$("#cid").val(r.cid);
+                parent.layer.close(parent.layer.getFrameIndex(window.name));
+                $("#cid").val(r.cid);
 
 			} else {
 				parent.layer.alert(r.msg)

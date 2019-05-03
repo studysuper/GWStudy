@@ -7,6 +7,7 @@ import com.bootdo.exercise.domain.TestPaperTypeExpDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 试卷表
@@ -20,4 +21,8 @@ public interface TestPaperTypeExpDao {
     List<TestPaperTypeExpDO> listExp(Query query);
 
     int countExp(Query query);
+
+    List<TestPaperTypeDO> queryRecord(Map<String, Object> map);
+
+    List<TestPaperTypeExpDO> querRecordDetial(Map<String, Object> map);
 }

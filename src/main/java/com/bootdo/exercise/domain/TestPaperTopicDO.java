@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author zq
  * @email 519996418
- * @date 2019-04-13 15:30:25
+ * @date 2019-05-02 15:40:05
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,4 +28,6 @@ public class TestPaperTopicDO extends BaseDO<String> implements Serializable {
             private String testPaperTypeId;
                                 //分数
             private Integer testPaperNumber;
+                                //内容类型(常识判断，言语理解与表达，数量关系，判断推理，资料分析)
+            private Integer testPaperType;
             }
