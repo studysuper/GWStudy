@@ -19,7 +19,7 @@
         c.test_paper_option_B,
         c.test_paper_option_C,
         c.test_paper_option_D,
-        d.test_paper_answerlistExp
+        d.test_paper_answer
         FROM
         exercise_test_paper_type a
         LEFT JOIN exercise_test_paper_topic b ON a.id = b.test_paper_type_id
@@ -71,6 +71,85 @@
             <if test="exerciseNumber != null and exerciseNumber != ''">and a.exercise_number = #{exerciseNumber}</if>
         </where>
     </select>
+    <select id="queryRecord" resultType="com.bootdo.exercise.domain.TestPaperTypeExpDO">
+        SELECT DISTINCT
+        a.*
+        FROM
+        exercise_test_paper_type a,
+        exercise_test_paper_score b
+        <where>
+            a.id = b.test_type_id
+            and b.operator = #{operator}
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="createdate != null and createdate != ''">and a.createdate = #{createdate}</if>
+            <if test="modifydate != null and modifydate != ''">and a.modifydate = #{modifydate}</if>
+            <if test="testPaperNumber != null and testPaperNumber != ''">and a.test_paper_number = #{testPaperNumber}
+            </if>
+            <if test="exerciseTitle != null and exerciseTitle != ''">and a.exercise_title = #{exerciseTitle}</if>
+            <if test="exerciseType != null and exerciseType != ''">and a.exercise_type = #{exerciseType}</if>
+            <if test="exerciseTime != null and exerciseTime != ''">and a.exercise_time = #{exerciseTime}</if>
+            <if test="exerciseNumber != null and exerciseNumber != ''">and a.exercise_number = #{exerciseNumber}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
 
+    <select id="querRecordDetial" resultType="com.bootdo.exercise.domain.TestPaperTypeExpDO">
+        SELECT
+        a.id,
+        b.id as topicId,
+        a.test_paper_number,
+        a.exercise_title,
+        a.exercise_time,
+        a.exercise_number,
+        b.test_paper_number as paperNumber,
+        b.test_paper_topic,
+        b.test_paper_number,
+        c.test_paper_option_A,
+        c.test_paper_option_B,
+        c.test_paper_option_C,
+        c.test_paper_option_D,
+        d.test_paper_answer,
+        e.isture,
+        e.your_answer
+        FROM
+        exercise_test_paper_type a
+        LEFT JOIN exercise_test_paper_topic b ON a.id = b.test_paper_type_id
+        LEFT JOIN exercise_test_paper_option c ON c.test_paper_topic_id = b.id
+        LEFT JOIN exercise_test_paper_answer d ON d.test_paper_topic_id = b.id
+        LEFT JOIN exercise_test_paper_score e on e.topic_id=b.id
+        <where>
+            and a.id = #{id}
+            <if test="operator != null and operator != ''">and a.operator = #{operator}</if>
+            <if test="createdate != null and createdate != ''">and a.createdate = #{createdate}</if>
+            <if test="modifydate != null and modifydate != ''">and a.modifydate = #{modifydate}</if>
+            <if test="testPaperNumber != null and testPaperNumber != ''">and a.test_paper_number = #{testPaperNumber}
+            </if>
+            <if test="exerciseTitle != null and exerciseTitle != ''">and a.exercise_title = #{exerciseTitle}</if>
+            <if test="exerciseType != null and exerciseType != ''">and a.exercise_type = #{exerciseType}</if>
+            <if test="exerciseTime != null and exerciseTime != ''">and a.exercise_time = #{exerciseTime}</if>
+            <if test="exerciseNumber != null and exerciseNumber != ''">and a.exercise_number = #{exerciseNumber}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
 
 </mapper>
