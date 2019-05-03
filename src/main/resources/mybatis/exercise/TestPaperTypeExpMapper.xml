@@ -129,7 +129,7 @@
         LEFT JOIN exercise_test_paper_score e on e.topic_id=b.id
         <where>
             and a.id = #{id}
-            <if test="operator != null and operator != ''">and a.operator = #{operator}</if>
+            <if test="operator != null and operator != ''">and e.operator = #{operator}</if>
             <if test="createdate != null and createdate != ''">and a.createdate = #{createdate}</if>
             <if test="modifydate != null and modifydate != ''">and a.modifydate = #{modifydate}</if>
             <if test="testPaperNumber != null and testPaperNumber != ''">and a.test_paper_number = #{testPaperNumber}
